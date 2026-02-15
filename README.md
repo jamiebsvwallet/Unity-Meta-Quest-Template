@@ -57,3 +57,15 @@ Adjust URP shadow settings according to the needs of your game/app.
 For release builds enable Low Overhead Mode under Oculus XR Plug-in Management options.  
 
 Cornell Box model taken form Sketchfab - Cornell Box- Original - Download Free 3D model by t-ly (@t-ly) https://sketchfab.com/3d-models/cornell-box-original-0d18de8d108c4c9cab1a4405698cc6b6
+
+---
+
+## 🎯 Building Your Game
+
+This is a **template project** that provides the technical foundation for Meta Quest development. To turn this into a complete game, see:
+
+- **[PROJECT_COMPLETENESS.md](PROJECT_COMPLETENESS.md)** - Detailed assessment of what's complete and what's needed
+- **[GAME_COMPLETION_CHECKLIST.md](GAME_COMPLETION_CHECKLIST.md)** - Quick reference checklist to track your progress
+
+**Current Status:** Template/Foundation (~10-15% of a complete game)  
+**Next Steps:** Define your game concept and start building your unique gameplay!
