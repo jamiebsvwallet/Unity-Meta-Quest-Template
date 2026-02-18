@@ -62,6 +62,8 @@ Cornell Box model taken form Sketchfab - Cornell Box- Original - Download Free 3
 
 This template includes a conversation history system that allows you to store, retrieve, and filter conversations by date.
 
+**📖 For detailed documentation, examples, and API reference, see [CONVERSATION_SYSTEM_GUIDE.md](CONVERSATION_SYSTEM_GUIDE.md)**
+
 ### Features
 - **Message Storage**: Save conversations with timestamps
 - **Date Filtering**: View messages from specific dates (e.g., yesterday)
