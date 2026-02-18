@@ -57,3 +57,92 @@ Adjust URP shadow settings according to the needs of your game/app.
 For release builds enable Low Overhead Mode under Oculus XR Plug-in Management options.  
 
 Cornell Box model taken form Sketchfab - Cornell Box- Original - Download Free 3D model by t-ly (@t-ly) https://sketchfab.com/3d-models/cornell-box-original-0d18de8d108c4c9cab1a4405698cc6b6
+
+## Conversation History System
+
+This template includes a conversation history system that allows you to store, retrieve, and filter conversations by date.
+
+### Features
+- **Message Storage**: Save conversations with timestamps
+- **Date Filtering**: View messages from specific dates (e.g., yesterday)
+- **Persistent Storage**: Conversations are saved to device storage and persist between sessions
+- **VR-Ready UI**: UI components designed for VR interaction
+
+### Usage
+
+#### Basic Setup
+
+1. **Add ConversationManager to your scene**: The ConversationManager automatically initializes as a singleton. No manual setup required.
+
+2. **Create a conversation**:
+```csharp
+using ConversationSystem;
+
+// Create a new conversation
+Conversation conv = ConversationManager.Instance.CreateConversation("My Conversation");
+
+// Add messages to the conversation
+ConversationManager.Instance.AddMessageToConversation(conv.id, "Alice", "Hello!");
+ConversationManager.Instance.AddMessageToConversation(conv.id, "Bob", "Hi Alice!");
+```
+
+3. **Retrieve conversations**:
+```csharp
+// Get all conversations
+List<Conversation> allConversations = ConversationManager.Instance.GetAllConversations();
+
+// Get only conversations with messages from yesterday
+List<Conversation> yesterdayConvs = ConversationManager.Instance.GetConversationsFromYesterday();
+
+// Get all messages from yesterday across all conversations
+var yesterdayMessages = ConversationManager.Instance.GetAllMessagesFromYesterday();
+```
+
+#### UI Integration
+
+1. **Add ConversationHistoryUI component** to a Canvas in your scene
+2. **Assign references** in the Inspector:
+   - Message Container (Transform): Container where message items will be displayed
+   - Message Item Prefab (GameObject): Prefab for each message item
+   - Show All Button (Button): Button to show all conversations
+   - Show Yesterday Button (Button): Button to filter yesterday's conversations
+   - Header Text (TextMeshProUGUI): Text to display current filter
+   - Scroll Rect (ScrollRect): Scroll view component
+
+3. The UI will automatically display conversations when buttons are clicked.
+
+#### Demo / Testing
+
+The `ConversationDemo` script can populate the system with sample data for testing:
+
+1. Add the `ConversationDemo` component to any GameObject in your scene
+2. Check "Populate On Start" to automatically create sample data
+3. Check "Clear Existing Data" to reset before populating
+4. Or call `PopulateSampleData()` manually from code
+
+### How to View Yesterday's Conversations
+
+To view conversations from yesterday:
+
+**Via Code**:
+```csharp
+var yesterdayMessages = ConversationManager.Instance.GetAllMessagesFromYesterday();
+foreach (var (conversation, messages) in yesterdayMessages)
+{
+    Debug.Log($"Conversation: {conversation.title}");
+    foreach (var message in messages)
+    {
+        Debug.Log($"{message.sender}: {message.content} at {message.GetDateTime()}");
+    }
+}
+```
+
+**Via UI**:
+1. Add the `ConversationHistoryUI` component to your scene
+2. Click the "Show Yesterday" button to filter messages from yesterday
+3. Click the "Show All" button to return to viewing all messages
+
+### Storage Location
+Conversations are automatically saved to: `Application.persistentDataPath/conversations.json`
+
+On Quest devices, this is typically: `/data/data/com.YourCompany.YourApp/files/conversations.json`
