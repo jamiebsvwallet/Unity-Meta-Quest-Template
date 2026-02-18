@@ -148,12 +148,12 @@ namespace ConversationSystem
         }
         
         /// <summary>
-        /// Formats a timestamp for display
+        /// Formats a timestamp for display (uses 24-hour format for consistency)
         /// </summary>
         private string FormatTimestamp(System.DateTime dateTime)
         {
             System.DateTime localTime = dateTime.ToLocalTime();
-            return localTime.ToString("MMM dd, yyyy hh:mm tt");
+            return localTime.ToString("MMM dd, yyyy HH:mm");
         }
         
         void OnDestroy()

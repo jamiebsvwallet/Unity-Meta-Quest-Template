@@ -89,10 +89,8 @@ namespace ConversationSystem
         /// </summary>
         private void AddHistoricalMessage(Conversation conversation, string sender, string content, int daysAgo)
         {
-            Message message = new Message(sender, content);
-            // Modify the timestamp to be from a specific day in the past
             DateTime historicalTime = DateTime.UtcNow.AddDays(daysAgo);
-            message.timestamp = historicalTime.ToString("o");
+            Message message = new Message(sender, content, historicalTime);
             conversation.messages.Add(message);
         }
         

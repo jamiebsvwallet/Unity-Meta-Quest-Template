@@ -23,11 +23,28 @@ namespace ConversationSystem
         }
         
         /// <summary>
+        /// Constructor with custom timestamp for historical messages
+        /// </summary>
+        public Message(string sender, string content, DateTime customTimestamp)
+        {
+            this.id = Guid.NewGuid().ToString();
+            this.sender = sender;
+            this.content = content;
+            this.timestamp = customTimestamp.ToString("o");
+        }
+        
+        /// <summary>
         /// Gets the DateTime of when this message was sent
         /// </summary>
         public DateTime GetDateTime()
         {
-            return DateTime.Parse(timestamp);
+            if (DateTime.TryParse(timestamp, out DateTime result))
+            {
+                return result;
+            }
+            
+            Debug.LogWarning($"Failed to parse timestamp '{timestamp}' for message {id}. Using current time.");
+            return DateTime.UtcNow;
         }
         
         /// <summary>
